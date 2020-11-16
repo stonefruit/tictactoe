@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+      }
+      .grid {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid grey;
+      }
+      .gridrow {
+        display: flex;
+      }
+      .gridbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid grey;
+        height: 100px;
+        width: 100px;
+        user-select: none;
+      }
+      .gridbox:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+      }
+      .gridbox:active {
+        background-color: lightblue;
+      }
+      #reset-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+        width: 70px;
+        height: 30px;
+        border-radius: 10px;
+        background-color: lightblue;
+      }
+      #reset-button:hover {
+        background-color: lightseagreen;
+        cursor: pointer;
+      }
+      #reset-button:active {
+        background-color: mediumseagreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="gridrow">
+        <div id="box-1" class="gridbox"></div>
+        <div id="box-2" class="gridbox"></div>
+        <div id="box-3" class="gridbox"></div>
+      </div>
+      <div class="gridrow">
+        <div id="box-4" class="gridbox"></div>
+
+        <div id="box-5" class="gridbox"></div>
+
+        <div id="box-6" class="gridbox"></div>
+      </div>
+      <div class="gridrow">
+        <div id="box-7" class="gridbox"></div>
+
+        <div id="box-8" class="gridbox"></div>
+
+        <div id="box-9" class="gridbox"></div>
+      </div>
+    </div>
+    <div id="reset-button">RESET</div>
+
+    <script>
+      var boxes = [null, null, null, null, null, null, null, null, null];
+      var player = "PLAYER_1";
+      var winner = null;
+
+      boxes.forEach(function (value, index) {
+        var boxNumber = index + 1;
+        var box = document.querySelector("#box-" + boxNumber);
+        box.addEventListener("click", function () {
+          if (boxes[index] !== null) {
+            console.log("Box is already taken");
+            return;
+          }
+          if (winner) {
+            console.log(winner + " is already a winner!");
+            return;
+          }
+
+          boxes[index] = player;
+
+          // Create X or O icons
+          var newIcon = document.createElement("i");
+          if (player === "PLAYER_1") {
+            newIcon.classList.add("fas");
+            newIcon.classList.add("fa-times");
+            player = "PLAYER_2";
+          } else {
+            newIcon.classList.add("far");
+            newIcon.classList.add("fa-circle");
+            player = "PLAYER_1";
+          }
+          box.appendChild(newIcon);
+
+          // Check winner
+          winner = checkWinner();
+          if (winner) {
+            console.log(winner + " won!!!");
+          }
+        });
+      });
+
+      var resetButton = document.querySelector("#reset-button");
+      resetButton.addEventListener("click", function () {
+        boxes = [null, null, null, null, null, null, null, null, null];
+        player = "PLAYER_1";
+        winner = null;
+        boxes.forEach(function (value, index) {
+          var boxNumber = index + 1;
+          var box = document.querySelector("#box-" + boxNumber);
+          box.innerHTML = "";
+        });
+      });
+
+      function checkWinner() {
+        var box1 = boxes[0];
+        var box2 = boxes[1];
+        var box3 = boxes[2];
+        var box4 = boxes[3];
+        var box5 = boxes[4];
+        var box6 = boxes[5];
+        var box7 = boxes[6];
+        var box8 = boxes[7];
+        var box9 = boxes[8];
+        if (box1 && box1 === box2 && box2 === box3) {
+          return box1;
+        }
+        if (box4 && box4 === box5 && box5 === box6) {
+          return box4;
+        }
+        if (box7 && box7 === box8 && box8 === box9) {
+          return box7;
+        }
+        if (box1 && box1 === box4 && box4 === box7) {
+          return box1;
+        }
+        if (box2 && box2 === box5 && box5 === box8) {
+          return box2;
+        }
+        if (box3 && box3 === box6 && box6 === box9) {
+          return box3;
+        }
+        if (box1 && box1 === box5 && box5 === box9) {
+          return box1;
+        }
+        if (box3 && box3 === box5 && box5 === box7) {
+          return box3;
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>
