@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+      }
+      .grid {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid grey;
+      }
+      .gridrow {
+        display: flex;
+      }
+      .gridbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid grey;
+        height: 100px;
+        width: 100px;
+        user-select: none;
+      }
+      .gridbox:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+      }
+      .gridbox:active {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="gridrow">
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+      </div>
+      <div class="gridrow">
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+      </div>
+      <div class="gridrow">
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+        <div class="gridbox">hi</div>
+      </div>
+    </div>
+  </body>
+</html>
